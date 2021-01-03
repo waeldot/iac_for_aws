@@ -1,0 +1,12 @@
+#/bin/bash
+
+REGISTRY="public.ecr.aws/r3c9f6c0"
+IMGTYPE=$1
+TAGNO=$2
+
+echo -e "\nDocker Image Type:$IMGTYPE=$1\nVersion Number:$TAGNO\n"
+[[ -z $IMGTYPE=$1 || -z $TAGNO ]] && exit 1 
+
+docker build -t $REGISTRY/$IMGTYPE:$TAGNO $IMGTYPE
+docker push $REGISTRY/$IMGTYPE:$TAGNO
+
